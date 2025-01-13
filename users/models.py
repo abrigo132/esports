@@ -7,6 +7,14 @@ class User(AbstractUser):
     Модель пользователя
     """
 
+    class Role(models.TextChoices):
+        PLAYER = "player", "Игрок"
+        MANAGER = "manager", "Менеджер"
+        INFLUENCER = "influencer", "Блогер"
+        MARKETER = "marketer", "Маркетолог"
+        COPYWRITER = "copywriter", "Копирайтер"
+        OTHER = "other", "другое"
+
     # Базовые данные
     nickname = models.CharField(max_length=50, unique=True, verbose_name="Никнэйм")
     description = models.CharField(
@@ -17,6 +25,9 @@ class User(AbstractUser):
     )
     last_name = models.CharField(
         max_length=50, blank=True, null=True, verbose_name="Фамилия"
+    )
+    role = models.CharField(
+        max_length=20, choices=Role.choices, default=Role.PLAYER, verbose_name="роль"
     )
 
     # Дополнительные данные
