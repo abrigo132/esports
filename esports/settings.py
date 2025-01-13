@@ -39,9 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "rest_framework",
     "api.apps.ApiConfig",
     "users.apps.UsersConfig",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.steam",
 ]
 
 MIDDLEWARE = [
@@ -130,3 +136,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "APP": {
+            "client_id": "1067496639127-4uq76jpobb2riiqol732p52hqr8nqk8n.apps.googleusercontent.com",
+            "secret": "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",
+            "key": "",
+        },
+    },
+    "steam": {"APP": {"client_id": None, "secret": None, "key": ""}},
+}
