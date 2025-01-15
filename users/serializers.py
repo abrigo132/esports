@@ -41,7 +41,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             username=validate_data["username"],
             email=validate_data["email"],
             password=validate_data["password"],
-            role=validate_data.get(User.Role.PLAYER),
+            role=validate_data.get("role", User.Role.PLAYER),
         )
 
     def validate_role(self, value: str) -> str:
