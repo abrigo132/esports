@@ -16,7 +16,6 @@ class User(AbstractUser):
         OTHER = "other", "другое"
 
     # Базовые данные
-    nickname = models.CharField(max_length=50, unique=True, verbose_name="Никнэйм")
     description = models.CharField(
         max_length=1000, blank=True, null=True, verbose_name="Описание"
     )
