@@ -1,3 +1,6 @@
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.views import OAuth2LoginView
+from allauth.socialaccount.providers.steam.views import SteamOpenIDLoginView
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
