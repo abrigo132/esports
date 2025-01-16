@@ -154,7 +154,13 @@ SOCIALACCOUNT_PROVIDERS = {
             "key": "",
         },
     },
-    "steam": {"APP": {"client_id": None, "secret": None, "key": ""}},
+    "steam": {
+        "APP": {
+            "client_id": "6B6D2BFD8BCF68DFA94AFE697C39BBEC",
+            "secret": "6B6D2BFD8BCF68DFA94AFE697C39BBEC",
+            "key": "",
+        }
+    },
 }
 
 REST_FRAMEWORK = {
