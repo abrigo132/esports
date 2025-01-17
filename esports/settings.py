@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.openid",
     "rest_framework_simplejwt",
     "django_filters",
-    "posts.apps.PostsConfig"
+    "posts.apps.PostsConfig",
 ]
 
 MIDDLEWARE = [
