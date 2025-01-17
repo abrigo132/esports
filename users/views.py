@@ -6,22 +6,36 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django_filters import rest_framework as filters
 
 from .models import User
-from .serializers import UserSerializer, UserSignUpSerializer
+from .serializers import UserSerializer, UserSignUpSerializer, ProfileSerializer
 from .services import FilterUsersList
 
 
-class ProfileView(generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveUpdateAPIView):
+    """
+    Просмотр профиля и обновление данных
+    """
+
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = ProfileSerializer
     lookup_field = "id"
     permission_classes = [IsAuthenticated]
 
+    def get_object(self):
+        return self.request.user
+
 
 class SignUpView(generics.CreateAPIView):
+    """
+    Регистрация пользователей
+    """
+
     serializer_class = UserSignUpSerializer
 
 
 class SocialLoginView(generics.GenericAPIView):
+    """
+    Выпуск JWT для пользователей, которые проходят стороннюю аутентификацию
+    """
 
     def post(self, request: Request, *args, **kwargs):
         user = request.user
@@ -43,6 +57,10 @@ class SocialLoginView(generics.GenericAPIView):
 
 
 class ListUsersView(generics.ListAPIView):
+    """
+    Просмотр всех пользователей и фильтрация для глобального поиска
+    """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_backends = [filters.DjangoFilterBackend]
