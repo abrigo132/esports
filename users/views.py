@@ -38,3 +38,9 @@ class SocialLoginView(generics.GenericAPIView):
                 "user": {"id": user.id, "email": user.email, "username": user.username},
             }
         )
+
+
+class ListUsersView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    # permission_classes = [IsAuthenticated]
