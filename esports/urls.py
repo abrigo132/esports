@@ -25,5 +25,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("api/posts/", include("posts.urls", "posts"), namespace="posts")
+    path("api/posts/", include("posts.urls", "posts"), namespace="posts"),
 ]
