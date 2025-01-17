@@ -3,9 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from django_filters import rest_framework as filters
 
 from .models import User
 from .serializers import UserSerializer, UserSignUpSerializer
+from .services import FilterUsersList
 
 
 class ProfileView(generics.RetrieveAPIView):
@@ -43,4 +45,6 @@ class SocialLoginView(generics.GenericAPIView):
 class ListUsersView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = FilterUsersList
     # permission_classes = [IsAuthenticated]
