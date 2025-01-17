@@ -48,4 +48,3 @@ class ListUsersView(generics.ListAPIView):
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = FilterUsersList
     permission_classes = [IsAuthenticated]
-
