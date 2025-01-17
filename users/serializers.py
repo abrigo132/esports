@@ -1,4 +1,6 @@
+from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import User
 from .services import create_user
@@ -102,3 +104,19 @@ class ProfileSerializer(serializers.ModelSerializer):
             "youtube",
         ]
         read_only_fields = ["id", "username", "email"]
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Сериализатор для смены пароля
+    """
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_new_password(self, value):
+        try:
+            validate_password(value)  # Валидация пароля
+        except ValidationError as e:
+            raise serializers.ValidationError(str(e))
+        return value
