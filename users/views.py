@@ -47,4 +47,5 @@ class ListUsersView(generics.ListAPIView):
     serializer_class = UserSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = FilterUsersList
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
+
