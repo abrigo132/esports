@@ -20,6 +20,10 @@ def create_user(username: str, email: str, password: str, role: str) -> User:
 
 
 class FilterUsersList(filters.FilterSet):
+    """
+    Класс для фильтрации пользователей по полям в глобальном поиске
+    """
+
     username = filters.CharFilter(lookup_expr="icontains")
     email = filters.CharFilter(lookup_expr="icontains")
     city = filters.CharFilter(lookup_expr="icontains")
