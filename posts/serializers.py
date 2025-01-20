@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post
+from .models import Post, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -39,3 +39,20 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_reposts_count(self, obj):
         return obj.reposts.count()
+
+
+class CommentSerializer(serializers.Serializer):
+    user = serializers.ReadOnlyField(source="user.username")
+
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "user",
+            "post",
+            "text",
+            "parent_comment",
+            "created_at",
+            "updated_at",
+        ]
+        only_read_fields = ["user", "created_at", "updated_at"]
