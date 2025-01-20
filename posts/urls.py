@@ -17,6 +17,5 @@ urlpatterns = [
         name="list posts with comments",
     ),
     path("", ListPostsView.as_view(), name="list posts"),
-    path("<int:pk>/", DetailPostView.as_view(), name="detail post")
-
+    path("<int:pk>/", DetailPostView.as_view(), name="detail post"),
 ]
